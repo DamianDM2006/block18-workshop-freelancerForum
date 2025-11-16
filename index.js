@@ -16,45 +16,51 @@ const humanAssetList = () => {
   const name = NAMES[Math.floor(Math.random() * NAMES.length)];
   const occupation =
     OCCUPATIONS[Math.floor(Math.random() * OCCUPATIONS.length)];
-
   const priceRangeMin =
     Math.random() * (PRICE_RANGE.max - PRICE_RANGE.min) + PRICE_RANGE.min;
   const priceRangeMax =
     Math.random() * (PRICE_RANGE.max - priceRangeMin) + priceRangeMin;
-
   const min = priceRangeMin.toFixed(2);
   const max = priceRangeMax.toFixed(2);
-
   const priceRange = { min, max };
-
   return { name, occupation, priceRange };
 };
 
-// Initialize a state variable to an array of `NUM_FREELANCERS` freelancer objects.
 const humanAssetArray = Array.from({ length: NUM_FREELANCERS }, humanAssetList);
 
-console.log(humanAssetArray);
+//  console.log(humanAssetArray);
 
-//  function returns the average rate of all freelancers
-const findAvgRate = () => {
+//  function returns the average rate of each freelancers
+const findAvgRates = () => {
   const getRates = humanAssetArray.map((getRate) => getRate.priceRange);
-  console.log(getRates);
-
   getRates.forEach((rateValue) => {
     rateValue.min = Number(rateValue.min);
     rateValue.max = Number(rateValue.max);
   });
-  console.log(getRates);
-
   const medianRates = getRates.map(
     (medianRate) => (medianRate.min + medianRate.max) / 2
   );
-  const averageRates = medianRates; /* .toFixed(2) */
-  console.log(averageRates);
+  const averageRates = medianRates;
+
+  //  console.log(averageRates);
+
+  return averageRates;
 };
 
-// map humanAssetArray to extract priceRange
-//  map priceRange to produce an array of median rates: (min + max)/2
-// return (median rates)/(NUM_ FREELANCERS)
+//  function return the average rate of all freelancers
 
-findAvgRate();
+const findAverageOfAll = () => {
+  const averageRates = findAvgRates();
+  const initialVal = averageRates[0];
+  const totalOfAll = averageRates.reduce(
+    (accumulator, currentVal) => accumulator + currentVal,
+    initialVal
+  );
+
+  const avgerageOfAll = totalOfAll / averageRates.length;
+
+  console.log(avgerageOfAll.toFixed(2));
+
+  return avgerageOfAll.toFixed(2);
+};
+findAverageOfAll();

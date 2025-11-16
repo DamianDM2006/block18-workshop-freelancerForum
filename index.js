@@ -49,7 +49,7 @@ const findAvgRate = () => {
   const medianRates = getRates.map(
     (medianRate) => (medianRate.min + medianRate.max) / 2
   );
-  const averageRates = medianRates/* .toFixed(2) */;
+  const averageRates = medianRates; /* .toFixed(2) */
   console.log(averageRates);
 };
 

@@ -17,14 +17,15 @@ const humanAssetList = () => {
   const occupation =
     OCCUPATIONS[Math.floor(Math.random() * OCCUPATIONS.length)];
 
-  const min =
+  const priceRangeMin =
     Math.random() * (PRICE_RANGE.max - PRICE_RANGE.min) + PRICE_RANGE.min;
-  const max = Math.random() * (PRICE_RANGE.max - min) + min;
+  const priceRangeMax =
+    Math.random() * (PRICE_RANGE.max - priceRangeMin) + priceRangeMin;
 
-  const priceRangeMin = min.toFixed(2);
-  const priceRangeMax = max.toFixed(2);
+  const min = priceRangeMin.toFixed(2);
+  const max = priceRangeMax.toFixed(2);
 
-  const priceRange = [priceRangeMin, priceRangeMax];
+  const priceRange = { min, max };
 
   return { name, occupation, priceRange };
 };
@@ -32,3 +33,5 @@ const humanAssetList = () => {
 const humanAssetArray = Array.from({ length: NUM_FREELANCERS }, humanAssetList);
 
 console.log(humanAssetArray);
+
+// Initialize a state variable to an array of `NUM_FREELANCERS` freelancer objects.

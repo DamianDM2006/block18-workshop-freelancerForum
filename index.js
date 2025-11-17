@@ -28,8 +28,6 @@ const humanAssetList = () => {
 
 const humanAssetArray = Array.from({ length: NUM_FREELANCERS }, humanAssetList);
 
-//  console.log(humanAssetArray);
-
 //  function returns the average rate of each freelancers
 const findAvgRates = () => {
   const getRates = humanAssetArray.map((getRate) => getRate.priceRange);
@@ -41,8 +39,6 @@ const findAvgRates = () => {
     (medianRate) => (medianRate.min + medianRate.max) / 2
   );
   const averageRates = medianRates;
-
-  //  console.log(averageRates);
 
   return averageRates;
 };
@@ -59,8 +55,6 @@ const findAverageOfAll = () => {
 
   const avgerageOfAll = totalOfAll / averageRates.length;
 
-//  console.log(avgerageOfAll.toFixed(2));
-
   return avgerageOfAll.toFixed(2);
 };
 
@@ -70,44 +64,49 @@ const averageRateofAllFrLance = findAverageOfAll();
 
 const AssetDataCard = (assetData) => {
   const { name, occupation, priceRange } = assetData;
-
+  const priceMin = priceRange.min;
+  const priceMax = priceRange.max;
   const $dataCard = document.createElement("tr");
-    $dataCard.classList.add("assetData");
-    $dataCard.innerHTML = `
+  $dataCard.classList.add("assetData");
+  $dataCard.innerHTML = `
             <th scope="row">${name}</th>
             <td>${occupation}</td>
-            <td>${priceRange}</td>
+            <td>${priceMin}</td>
+            <td>${priceMax}</td>
         `;
   return $dataCard;
-}
+};
 
 const AssetDataCards = () => {
   const $dataCards = document.createElement("tbody");
-    $dataCards.classList.add("assetData");
+  $dataCards.classList.add("assetData");
 
   const $freelancers = humanAssetArray.map(AssetDataCard);
-    $dataCards.replaceChildren(...$freelancers);
+  $dataCards.replaceChildren(...$freelancers);
 
   return $dataCards;
-}
+};
 
 const render = () => {
   const $app = document.querySelector("#app");
-    $app.innerHTML = `
+  $app.innerHTML = `
       <h1>List of Freelancers:</h1>
       <table>
+        <caption id="avgRate">Average Rate: ${averageRateofAllFrLance}</caption>
         <thead>
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Occupation</th>
-            <th scope="col">Price Range</th>
+            <th scope="col">Minimum Price</th>
+            <th scope="col">Maximum Price</th>
           </tr>
         </thead>
-        <freeLancers></freeLancers>
+        <tbody id="freelancers"></tbody>
       </table>
       `;
-  $app.querySelector("freeLancers").replaceWith(AssetDataCards(AssetDataCards));
-    
+  $app
+    .querySelector("#freelancers")
+    .replaceWith(AssetDataCards(AssetDataCards));
+};
 
-}
 render();

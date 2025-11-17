@@ -1,0 +1,31 @@
+body {
+  background-color:lightgray;
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  padding: 10px;
+
+  display: flex;
+  justify-content: center;
+}
+
+thead {
+  background-color: aqua;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  border-style: double;
+  border-color: blue;
+  padding: 1em;
+  box-sizing: content-box;
+ 
+}
+
+caption {
+  color:firebrick;
+}

@@ -59,8 +59,42 @@ const findAverageOfAll = () => {
 
   const avgerageOfAll = totalOfAll / averageRates.length;
 
-  console.log(avgerageOfAll.toFixed(2));
+//  console.log(avgerageOfAll.toFixed(2));
 
   return avgerageOfAll.toFixed(2);
 };
-findAverageOfAll();
+
+const averageRateofAllFrLance = findAverageOfAll();
+
+//  Write a component function to represent a single freelancer.
+
+const AssetDataCard = (Asset) => {
+  const { name, occupation, priceRange } = assetData;
+
+  const $dataCard = document.createElement("tbody");
+    $dataCard.classList.add("assetData");
+    $dataCard.innerHTML = 
+//    <table>
+//      <thead>
+//        <tr>
+//          <th scope="col">Name</th>
+//          <th scope="col">Occupation</th>
+//          <th scope="col">PriceRange</th>
+//        </tr>
+//      </thead>
+        `<tbody>
+          <tr>
+            <th scope="row">${name}</th>
+            <td>${occupation}</td>
+            <td>${priceRange}</td>
+          </tr>
+        </tbody>
+//    `</table> 
+    ;
+  return $dataCard;
+}
+
+const AssetDataCards = () => {
+  const $dataCard = document.createElement("table");
+    $dataCard.classList.add("assetData");
+}

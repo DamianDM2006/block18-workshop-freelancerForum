@@ -68,34 +68,46 @@ const averageRateofAllFrLance = findAverageOfAll();
 
 //  Write a component function to represent a single freelancer.
 
-const AssetDataCard = (Asset) => {
+const AssetDataCard = (assetData) => {
   const { name, occupation, priceRange } = assetData;
 
-  const $dataCard = document.createElement("tbody");
+  const $dataCard = document.createElement("tr");
     $dataCard.classList.add("assetData");
-    $dataCard.innerHTML = 
-//    <table>
-//      <thead>
-//        <tr>
-//          <th scope="col">Name</th>
-//          <th scope="col">Occupation</th>
-//          <th scope="col">PriceRange</th>
-//        </tr>
-//      </thead>
-        `<tbody>
-          <tr>
+    $dataCard.innerHTML = `
             <th scope="row">${name}</th>
             <td>${occupation}</td>
             <td>${priceRange}</td>
-          </tr>
-        </tbody>
-        `
-//    </table> 
-    ;
+        `;
   return $dataCard;
 }
 
 const AssetDataCards = () => {
-  const $dataCard = document.createElement("table");
-    $dataCard.classList.add("assetData");
+  const $dataCards = document.createElement("tbody");
+    $dataCards.classList.add("assetData");
+
+  const $freelancers = humanAssetArray.map(AssetDataCard);
+    $dataCards.replaceChildren(...$freelancers);
+
+  return $dataCards;
 }
+
+const render = () => {
+  const $app = document.querySelector("#app");
+    $app.innerHTML = `
+      <h1>List of Freelancers:</h1>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Occupation</th>
+            <th scope="col">Price Range</th>
+          </tr>
+        </thead>
+        <freeLancers></freeLancers>
+      </table>
+      `;
+  $app.querySelector("freeLancers").replaceWith(AssetDataCards(AssetDataCards));
+    
+
+}
+render();

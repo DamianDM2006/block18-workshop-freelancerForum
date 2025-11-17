@@ -89,7 +89,8 @@ const AssetDataCard = (Asset) => {
             <td>${priceRange}</td>
           </tr>
         </tbody>
-//    `</table> 
+        `
+//    </table> 
     ;
   return $dataCard;
 }
